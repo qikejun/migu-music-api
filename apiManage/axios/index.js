@@ -3,7 +3,7 @@
  * @Author: pengpeng
  * @Date: 2021-06-29 20:39:03
  * @LastEditors: pengpeng
- * @LastEditTime: 2021-06-29 23:30:49
+ * @LastEditTime: 2021-07-01 08:35:00
  */
 const axios = require('axios')
 const Qs = require('qs')
@@ -21,15 +21,23 @@ class apiManage {
     const _axios = this.axios
     return new Promise((resolve,reject) => {
       // 临时处理get请求时，数组类型如arr=[1,2]，则转换成arr=1&arr=2
-      // if (options.method === 'get' || options.method === 'GET') {
-      //   let params = ''
-      //   params = Qs.stringify(options.params, {
-      //     arrayFormat: 'repeat'
-      //   })
-      //   options.params = ''
-      //   options.url = `${options.url}?${params}`
-      // }
-      console.log(options)
+      if (options.method === 'get' || options.method === 'GET') {
+        let params = ''
+        params = Qs.stringify(options.params, {
+          arrayFormat: 'repeat'
+        })
+        options.data = options.params
+        options.params = ''
+        options.url = `${options.url}?${params}`
+        // console.log(options.url)
+      }
+
+      options.headers = options.headers || {};
+      options.headers.referer = options.headers.referer || 'http://m.music.migu.cn/v3';
+      options.xsrfCookieName = 'XSRF-TOKEN';
+      options.withCredentials = true;
+
+      // console.log(options)
       _axios
         (options)
         .then(function (response) {
