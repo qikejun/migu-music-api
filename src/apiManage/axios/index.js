@@ -1,30 +1,30 @@
 /*
- * @Descripttion: 
+ * @Descripttion:
  * @Author: pengpeng
  * @Date: 2021-06-29 20:39:03
  * @LastEditors: pengpeng
- * @LastEditTime: 2021-07-01 08:35:00
+ * @LastEditTime: 2021-07-06 09:50:53
  */
 const axios = require('axios')
 const Qs = require('qs')
-const loader = require('../loader')
+const loader = require('../loader.js')
 class apiManage {
-  constructor(options){
+  constructor(options) {
     this.axios = axios.create()
     this.options = options || {}
     // console.log(this.options)
   }
-  request(key,params = {}) {
-    const {api, config} = loader(key)
-    let options = {...this.options,...config,...api}
+  request(key, params = {}) {
+    const { api, config } = loader(key)
+    let options = { ...this.options, ...config, ...api }
     options.params = params
     const _axios = this.axios
-    return new Promise((resolve,reject) => {
+    return new Promise((resolve, reject) => {
       // 临时处理get请求时，数组类型如arr=[1,2]，则转换成arr=1&arr=2
       if (options.method === 'get' || options.method === 'GET') {
         let params = ''
         params = Qs.stringify(options.params, {
-          arrayFormat: 'repeat'
+          arrayFormat: 'repeat',
         })
         options.data = options.params
         options.params = ''
@@ -32,14 +32,14 @@ class apiManage {
         // console.log(options.url)
       }
 
-      options.headers = options.headers || {};
-      options.headers.referer = options.headers.referer || 'http://m.music.migu.cn/v3';
-      options.xsrfCookieName = 'XSRF-TOKEN';
-      options.withCredentials = true;
+      options.headers = options.headers || {}
+      options.headers.referer =
+        options.headers.referer || 'http://m.music.migu.cn/v3'
+      options.xsrfCookieName = 'XSRF-TOKEN'
+      options.withCredentials = true
 
       // console.log(options)
-      _axios
-        (options)
+      _axios(options)
         .then(function (response) {
           resolve(response)
         })
@@ -48,8 +48,8 @@ class apiManage {
         })
     })
   }
-  use(interceptors){
-    ['request', 'response'].forEach(e => {
+  use(interceptors) {
+    ;['request', 'response'].forEach((e) => {
       const fns = interceptors[e]
       const interceptor = this.axios.interceptors[e]
       fns && fns.length && interceptor.use.apply(interceptor, fns)

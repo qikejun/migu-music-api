@@ -1,30 +1,26 @@
 /*
- * @Descripttion: 
+ * @Descripttion:
  * @Author: pengpeng
  * @Date: 2021-06-18 08:31:20
  * @LastEditors: pengpeng
- * @LastEditTime: 2021-06-24 21:32:37
+ * @LastEditTime: 2021-07-06 09:53:19
  */
-require("@babel/register")
+require('@babel/register')
 
 const path = require('path')
-const Koa = require('koa');
-const app = new Koa();
-
-const router = require('./routers/router')
-
+const Koa = require('koa')
 const koaBody = require('koa-body')
-const static = require('koa-static')
+const koaStatic = require('koa-static')
+const router = require('#src/routers/router.js')
 
-app.use(koaBody());
-app.use(static(
-  path.join(__dirname,  'public')
-));
+const app = new Koa()
 
-app.use(router.routes())
-  .use(router.allowedMethods())
-const PORT = process.env.PORT || 3000;
+app.use(koaBody())
+app.use(koaStatic(path.join(__dirname, 'public')))
+
+app.use(router.routes()).use(router.allowedMethods())
+const PORT = process.env.PORT || 3000
 
 app.listen(PORT, () => {
   console.log(`server running @ http://localhost:${PORT}`)
-});
+})

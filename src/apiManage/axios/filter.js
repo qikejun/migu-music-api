@@ -1,11 +1,11 @@
 /*
- * @Descripttion: 
+ * @Descripttion:
  * @Author: pengpeng
  * @Date: 2021-06-29 21:42:40
  * @LastEditors: pengpeng
- * @LastEditTime: 2021-06-29 22:10:08
+ * @LastEditTime: 2021-07-06 09:50:27
  */
-module.exports =  {
+module.exports = {
   response: [
     function (response) {
       // return response.data;
@@ -17,6 +17,6 @@ module.exports =  {
         }
         return response.data
       }
-    }
-  ]
+    },
+  ],
 }
