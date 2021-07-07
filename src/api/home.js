@@ -3,7 +3,7 @@
  * @Author: pengpeng
  * @Date: 2021-07-05 08:49:37
  * @LastEditors: peng
- * @LastEditTime: 2021-07-07 08:48:57
+ * @LastEditTime: 2021-07-07 21:14:51
  */
 module.exports = {
   /**
@@ -15,7 +15,7 @@ module.exports = {
    * @return {*}
    */
   recommendPlaylist: {
-    url: "/recommend/playlist",
+    url: "/remoting/playlist_bycolumnid_tag",
     method: "GET",
   },
   /**
@@ -27,7 +27,7 @@ module.exports = {
    * @return {*}
    */
   newSongs: {
-    url: "/recommend/playlist",
+    url: "/remoting/cms_list_tag",
     method: "GET",
   },
   /**
@@ -39,7 +39,7 @@ module.exports = {
    * @return {*}
    */
   newAlbums: {
-    url: "/new/albums",
+    url: "/remoting/cms_list_tag",
     method: "GET",
   },
 };
