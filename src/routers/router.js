@@ -3,7 +3,7 @@
  * @Author: pengpeng
  * @Date: 2021-06-21 19:36:50
  * @LastEditors: peng
- * @LastEditTime: 2021-07-07 21:49:11
+ * @LastEditTime: 2021-07-08 08:31:12
  */
 // 搜索接口
 const Router = require("@koa/router");
@@ -11,7 +11,7 @@ const api = require("#src/apiManage/index.js");
 
 const router = new Router();
 
-const pageNum = 1;
+const pageNo = 1;
 const pageSize = 20;
 
 const typeMap = {
@@ -26,7 +26,7 @@ const typeMap = {
 router.get("/search", async (ctx, next) => {
   const params = {
     keyword: "张学友",
-    pgc: pageNum,
+    pgc: pageNo,
     rows: pageSize,
     type: typeMap["song"],
   };
@@ -38,4 +38,5 @@ router.get("/search", async (ctx, next) => {
 });
 router.use("/home", require("./home.js"));
 router.use("/songList", require("./songList.js"));
+router.use("/album", require("./album.js"));
 module.exports = router;

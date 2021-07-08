@@ -9,7 +9,7 @@ const Router = require("@koa/router");
 const api = require("../apiManage/index");
 
 const songListRouter = new Router();
-const pageNum = 1;
+const pageNo = 1;
 const pageSize = 30;
 
 const typeMap = {
@@ -23,7 +23,7 @@ songListRouter.get("/recommendPlaylist", async (ctx, next) => {
     type: 1,
     columnId: typeMap[2],
     tagId: "",
-    startIndex: (pageNum - 1) * pageSize,
+    startIndex: (pageNo - 1) * pageSize,
   };
 
   const result = await api.request("songList.recommendPlaylist", params);

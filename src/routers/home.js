@@ -9,13 +9,13 @@ const Router = require("@koa/router");
 const api = require("../apiManage/index");
 
 const homeRouter = new Router();
-const pageNum = 1;
+const pageNo = 1;
 const pageSize = 12;
 
 homeRouter.get("/newSongs", async (ctx, next) => {
   const params = {
     pageSize,
-    pageNo: pageNum,
+    pageNo: pageNo,
     nid: 23853978,
   };
   const result = await api.request("home.newSongs", params);
@@ -42,7 +42,7 @@ homeRouter.get("/newSongs", async (ctx, next) => {
 homeRouter.get("/newAlbums", async (ctx, next) => {
   const params = {
     pageSize,
-    pageNo: pageNum,
+    pageNo: pageNo,
     nid: 23854016,
     type: 2003,
   };
